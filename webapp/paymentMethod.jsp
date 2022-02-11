@@ -34,14 +34,15 @@
                         		ResultSet rs = null;
                         		
                         	try{        		
-                        		Class.forName("org.postgresql.Driver");
+                        		Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
                         	}catch(ClassNotFoundException e){
                         		e.printStackTrace();
                         	}
                         	
                         	try{
-                        		con = DriverManager.getConnection("jdbc:postgresql://ec2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/d3lt7uttu2s0h3", "yyehssgxzsdqki","9e580d650d0f1be9f361083b5a0741807d83c7d92a887482a0630f19cd2dc9c3");
-                        		stmt = con.createStatement();
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");                        		
+					stmt = con.createStatement();
                         		String sql = "select totalPrice from cart";
                         		rs = stmt.executeQuery(sql);	
                         	
