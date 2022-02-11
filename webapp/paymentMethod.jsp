@@ -109,7 +109,7 @@
                                 </div><br><button class="button" onclick="submit()">SUBMIT</button>
                                 <script>
                                     	function submit(){
-                                    		document.location.href = "invoice.jsp";
+                                    		document.location.href = "homepage.jsp";
                                     	}
                                </script>
                                <%
