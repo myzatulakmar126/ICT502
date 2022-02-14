@@ -373,19 +373,19 @@ input[type=text]:focus {
         <!-- SLIDE SHOW BACKGROUND -->
         <div class="mySlides fade">
           <div class="numbertext">1 / 3</div>
-          <img src="nyah.jpg" style="width:100%">
+          <img src="head1.jpg" style="width:100%">
           <div class="text">Channel summer 2011</div><br>
         </div>
         
         <div class="mySlides fade">
           <div class="numbertext">2 / 3</div>
-          <img src="over.jpg" style="width:100%">
+          <img src="head2.jpg" style="width:100%">
           <div class="text">Dior with Kim Jisso yaa</div><br>
         </div>
 
         <div class="mySlides fade">
           <div class="numbertext">3 / 3</div>
-          <img src="nyah3.png" style="width:100%">
+          <img src="head3.png" style="width:100%">
           <div class="text">Blackpink in your areaaaa</div><br>
         </div>
         
