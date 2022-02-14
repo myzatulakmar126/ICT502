@@ -5,10 +5,10 @@
 	try
 	{
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+	Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 	Statement st=conn.createStatement();
 	int i=st.executeUpdate("DELETE FROM product WHERE productid="+productid);
-	out.println("Data Deleted Successfully!");
+	response.sendRedirect("productTable.jsp");
 	}
 	catch(Exception e)
 	{

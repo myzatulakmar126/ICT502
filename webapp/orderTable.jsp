@@ -10,8 +10,8 @@
 		String productid = request.getParameter("productid");
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String connectionUrl = "jdbc:oracle:thin:@localhost:1521:XE ";
-		String database = "taka";
-		String userid = "taka";
+		String database = "tco";
+		String userid = "tco";
 		String password = "system";
 		try {
 		Class.forName(driver);
@@ -137,11 +137,11 @@
     <div class="header">
         <a href="#default" class="logo">TakaCastOff</a>
         <div class="header-right">
-          <a href="adminDashboard.html">Home</a>
+          <a href="adminDashboard.jsp">Home</a>
           <a href="productTable.jsp">Product</a>
           <a href="orderTable.jsp">Order</a>
           <a href="feedbackTable.jsp">Feedback</a>
-          <a href="#account">Account</a>
+          <a href="adminIndex.jsp">Logout</a>
         </div>
       </div>
 	
@@ -165,7 +165,7 @@
 						<tbody>
 						<%
 						try{
-						connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+						connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 						statement=connection.createStatement();
 						String sql ="select * from ordert";
 						resultSet = statement.executeQuery(sql);
@@ -179,7 +179,6 @@
 									<td class="column3"><%=resultSet.getString("adminid") %></td>
 									<td class="column4">
 										<a href="deleteOrder.jsp?orderid=<%=resultSet.getString("orderid") %>"><button class="btn"><i class="fa fa-trash"></i></button></a>
-										<a href="orderUpdate.jsp?orderid=<%=resultSet.getString("orderid")%>"><button class="btn"><i class="fa fa-pencil"></i></button></a>
 									</td>
 								</tr>
 						<%

@@ -8,8 +8,8 @@
 		String productid = request.getParameter("productid");
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String connectionUrl = "jdbc:oracle:thin:@localhost:1521:XE";
-		String database = "taka";
-		String userid = "taka";
+		String database = "tco";
+		String userid = "tco";
 		String password = "system";
 		try {
 		Class.forName(driver);
@@ -22,7 +22,7 @@
 		%>
 		<%
 		try{
-		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 		statement=connection.createStatement();
 		String sql ="select * from product where productid="+productid;
 		resultSet = statement.executeQuery(sql);
@@ -49,7 +49,7 @@
 				<div class="form-right">
 					<h2>Update Product Details</h2>
 					
-					<input type="hidden" name="productid" value="<%=resultSet.getString("productid") %>">
+					<input type="hidden" name="productid" value="<%=resultSet.getInt("productid") %>">
 					
 					<div class="form-row">
 						<input type="text" name="productname" class="street" id="productname" value="<%=resultSet.getString("productname")%>" required>
@@ -65,6 +65,10 @@
 
 					<div class="form-row">
 						<input type="text" name="productdesc" class="additional" id="productdesc" value="<%=resultSet.getString("productdesc") %>" required>
+					</div>
+					
+					<div class="form-row">
+						<input type="text" name="productimages" class="additional" id="productdesc" value="<%=resultSet.getString("productimages") %>" required>
 					</div>
 
 					<div class="form-row-last" >

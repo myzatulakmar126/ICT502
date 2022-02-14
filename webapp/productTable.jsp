@@ -7,11 +7,11 @@
 		<%@page import="java.sql.Statement"%>
 		<%@page import="java.sql.Connection"%>
 		<%
-		String productid = request.getParameter("productid");
+		
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String connectionUrl = "jdbc:oracle:thin:@localhost:1521:XE ";
-		String database = "taka";
-		String userid = "taka";
+		String database = "tco";
+		String userid = "tco";
 		String password = "system";
 		try {
 		Class.forName(driver);
@@ -21,6 +21,7 @@
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
+		String image = null;
 		%>
 <html lang="en">
 <head>
@@ -137,10 +138,11 @@
     <div class="header">
         <a href="#default" class="logo">TakaCastOff</a>
         <div class="header-right">
-          <a href="adminDashboard.html">Home</a>
+          <a href="adminDashboard.jsp">Home</a>
           <a href="productTable.jsp">Product</a>
-          <a href="#order">Order</a>
-          <a href="#account">Account</a>
+          <a href="orderTable.jsp">Order</a>
+          <a href="feedbackTable.jsp">Feedback</a>
+          <a href="adminIndex.jsp">Logout</a>
         </div>
       </div>
 	
@@ -160,30 +162,33 @@
 								<th class="column2">Size</th>
 								<th class="column2">Price</th>
 								<th class="column3">Description</th>
+								<th class="column3">Images</th>
 								<th class="column4">#</th>
 							</tr>
 						</thead>
 						<tbody>
 						<%
 						try{
-						connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+						connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 						statement=connection.createStatement();
 						String sql ="select * from product";
 						resultSet = statement.executeQuery(sql);
 						while(resultSet.next()){
 						%>
 								<tr>
-									<td class="column2"><%=resultSet.getString("productid") %></td>
+									<td class="column2"><%=resultSet.getInt("productid") %></td>
 									<td class="column2"><%=resultSet.getString("productname") %></td>
 									<td class="column2"><%=resultSet.getString("productsize") %></td>
 									<td class="column2"><%=resultSet.getInt("productprice") %></td>
 									<td class="column3"><%=resultSet.getString("productdesc") %></td>
-									<td class="column4">
-										<a href="productView.jsp?productid=<%=resultSet.getString("productid")%>"><button class="btn"><i class="fa fa-eye"></i></button></a>
+									<% image = resultSet.getString("productimages"); %>
+		    						<td class="column2"><img src="<%=image %>" alt="image" style="width:50%; height:50%"></td>
+									<td class="column3">
+										<a href="productView.jsp?productid=<%=resultSet.getInt("productid")%>"><button class="btn"><i class="fa fa-eye"></i></button></a>
 										
-										<a href="productUpdate.jsp?productid=<%=resultSet.getString("productid")%>"><button class="btn"><i class="fa fa-pencil"></i></button></a>
+										<a href="productUpdate.jsp?productid=<%=resultSet.getInt("productid")%>"><button class="btn"><i class="fa fa-pencil"></i></button></a>
 										
-										<a href="deleteProduct.jsp?productid=<%=resultSet.getString("productid") %>"><button class="btn"><i class="fa fa-trash"></i></button></a>
+										<a href="deleteProduct.jsp?productid=<%=resultSet.getInt("productid") %>"><button class="btn"><i class="fa fa-trash"></i></button></a>
 									</td>
 								</tr>
 						<%

@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%! String driverName = "oracle.jdbc.driver.OracleDriver";%>
 <%!String url = "jdbc:oracle:thin:@localhost:1521:XE";%>
-<%!String user = "taka";%>
+<%!String user = "tco";%>
 <%!String psw = "system";%>
 <%
 	String productid = request.getParameter("productid");
@@ -10,6 +10,7 @@
 	String productsize=request.getParameter("productsize");
 	int productprice=Integer.parseInt(request.getParameter("productprice"));
 	String productdesc=request.getParameter("productdesc");
+	String productimages=request.getParameter("productimages");
 	if(productid != null)
 	{
 	Connection con = null;
@@ -18,18 +19,19 @@
 	try
 	{
 	Class.forName(driverName);
-	con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
-	String sql="Update product set productid=?,productname=?,productsize=?,productprice=?,productdesc=? where productid="+productid;
+	con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
+	String sql="Update product set productid=?,productname=?,productsize=?,productprice=?,productdesc=?,productimages=? where productid="+productid;
 	ps = con.prepareStatement(sql);
 	ps.setString(1,productid);
 	ps.setString(2, productname);
 	ps.setString(3, productsize);
 	ps.setInt(4, productprice);
 	ps.setString(5, productdesc);
+	ps.setString(6, productimages);
 	int i = ps.executeUpdate();
 	if(i > 0)
 	{
-	out.print("Record Updated Successfully");
+		response.sendRedirect("productTable.jsp");
 	}
 	else
 	{

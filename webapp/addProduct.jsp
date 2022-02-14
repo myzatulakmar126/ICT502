@@ -8,15 +8,17 @@ String productname=request.getParameter("productname");
 String productsize=request.getParameter("productsize");
 int productprice=Integer.parseInt(request.getParameter("productprice"));
 String productdesc=request.getParameter("productdesc");
+String productimages=request.getParameter("productimages");
 
 try
 {
 Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into product(productname,productsize,productprice,productdesc)values('"+productname+"','"+productsize+"','"+productprice+"','"+productdesc+"')");
-out.println("Data is successfully inserted!");
+int i=st.executeUpdate("insert into product(productname,productsize,productprice,productdesc,productimages)values('"+productname+"','"+productsize+"','"+productprice+"','"+productdesc+"','"+productimages+"')");
+response.sendRedirect("productTable.jsp");
+//out.println("Data is successfully inserted!");
 }
 catch(Exception e)
 {

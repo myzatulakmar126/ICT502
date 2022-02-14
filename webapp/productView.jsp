@@ -8,8 +8,8 @@
 		String productid = request.getParameter("productid");
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String connectionUrl = "jdbc:oracle:thin:@localhost:1521:XE";
-		String database = "taka";
-		String userid = "taka";
+		String database = "tco";
+		String userid = "tco";
 		String password = "system";
 		try {
 		Class.forName(driver);
@@ -19,10 +19,11 @@
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
+		String image = null;
 		%>
 		<%
 		try{
-		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "taka","system");
+		connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ", "tco","system");
 		statement=connection.createStatement();
 		String sql ="select * from product where productid="+productid;
 		resultSet = statement.executeQuery(sql);
@@ -47,7 +48,8 @@
 		<div class="wrapper" style="background-image: url('images/bg4.jpg');">
 			<div class="inner">
 				<div class="image-holder">
-					<img src="images/formbg1.jpeg" alt="#">
+					<% image = resultSet.getString("productimages"); %>
+					<img src="<%=image%>" alt="image" style="width:600px; height:550px">
 				</div>
 				
 				<div class="div1">

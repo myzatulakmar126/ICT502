@@ -35,6 +35,10 @@
 					<div class="form-row">
 						<input type="text" name="productdesc" class="productdesc" id="productdesc" placeholder="Description" required>
 					</div>
+					
+					<div class="form-row">
+						<input type="text" name="productimages" class="productimages" id="productimages" placeholder="Image directory only" required>
+					</div>
 
 					<div class="form-row-last" >
 						<input type="submit" name="register" class="register" value="Add Product">
